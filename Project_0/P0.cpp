@@ -7,7 +7,10 @@
 
 #include <fstream>
 #include <iostream>
-#include "Node.h"
+#include <String>
+#include <vector>
+#include "node.h"
+#include "buildTree.h"
 
 using namespace std;
 
@@ -41,7 +44,12 @@ int main ( int argc, char *argv[] )
 
 	FILE *fp; //Creates a file pointer.
 
-	cout<< argv[0];
+
+	BinaryTree my_tree;
+
+	string file_string;
+	vector<string> input_numbers;
+
 
 	if(argc==1)
 	{
@@ -50,26 +58,42 @@ int main ( int argc, char *argv[] )
 
 	else
 	{
+		//This will open the file and read in the file with ifstream.
 		ifstream the_file ( argv[1] );
 
 		//Checks if the file was actually opened.
 		if ( !the_file.is_open() )
 			cout<<"Could not open file\n"; //Prints out an error message
 
+		//Other wise it will import the file as a string.
 	    else
 	    {
-	    	  char x;
-	      	  while ( the_file.get ( x ) )
-	    	  cout<< x;
+	    	  char x; //It will take character by character and append to the string.
+	      	  while (the_file.get ( x ))
+	      	  {
+	      		file_string+=x;
+	      	  }
+
 	    }
 	}
 
 
+
+	input_numbers=divide_string_over_spaces(file_string);
+
+	string last_digit=get_last_digit(4, input_numbers);
+	cout<<last_digit<<endl;
+
+
+
+
+
+	/*
 	list<int>::iterator num_value;
 
 	Node *t=new Node();
 
-	t->values.push_front(4);
+	t->values.push_front(4);vector<string> divide_string_over_spaces(string my_string)
 	t->values.push_front(4);
 	t->values.push_front(6);
 	t->values.push_front(7);
@@ -78,10 +102,13 @@ int main ( int argc, char *argv[] )
 	        cout << '\t' << *num_value;
 	    cout << '\n';
 
+	*/
 
 
 
-  }
 
+
+
+}
 
 
