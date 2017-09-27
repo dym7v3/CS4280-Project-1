@@ -85,19 +85,6 @@ vector<string> divide_string_over_spaces(string my_string)
 
 
 
-	//This will be a function used to display the binary tree.
-	void BinaryTree::displayInOrder(TreeNode *nodePtr) const
-	{
-		if(nodePtr)
-		{
-			displayInOrder(nodePtr->left);
-			cout<<nodePtr->digit<<":";
-			for (auto v : nodePtr->digit_list)
-			       cout << " "<<v;
-			cout<<"\n";
-			displayInOrder(nodePtr->right);
-		}
-	}
 
 
 

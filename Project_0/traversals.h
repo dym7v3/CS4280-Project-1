@@ -10,6 +10,4 @@
 
 
 
-
-
 #endif /* TRAVERSALS_H_ */

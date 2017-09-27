@@ -35,7 +35,7 @@ private:
 
 		//private member functions
 		void insert(TreeNode *&, TreeNode *&, int);
-		void displayInOrder(TreeNode *) const;
+		void in_order(TreeNode *, int) const;
 
 public:
 
@@ -52,14 +52,12 @@ public:
 	void insertNode(int , int);
 
 
-	void remove(string);
-
-
 	//this is an inline function that will call the display in order
 	//function with the root.
 	void displayInOrder()const
 	{
-		displayInOrder(root);
+		int level=0;
+		in_order(root, level);
 	}
 
 

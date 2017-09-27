@@ -10,6 +10,8 @@
 #include <String>
 #include <vector>
 #include <stdlib.h>
+#include <istream>
+#include <iterator>
 #include "buildTree.h"
 
 using namespace std;
@@ -40,7 +42,6 @@ sort() – Sorts the list in increasing order
 int main ( int argc, char *argv[] )
 {
 
-	FILE *fp; //Creates a file pointer.
 
 
 	BinaryTree my_tree;
@@ -52,7 +53,8 @@ int main ( int argc, char *argv[] )
 
 	if(argc==1)
 	{
-		fp=stdin;
+
+		getline(cin, file_string);
 	}
 
 	else
@@ -77,6 +79,7 @@ int main ( int argc, char *argv[] )
 	}
 
 
+
 	//Separates the string numbers over white-spaces. returns a string vector.
 	input_numbers=divide_string_over_spaces(file_string);
 
@@ -93,7 +96,7 @@ int main ( int argc, char *argv[] )
 
 	   my_tree.displayInOrder();
 
-
+	   return 0;
 }
 
 
