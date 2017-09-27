@@ -9,7 +9,7 @@
 #include <iostream>
 #include <String>
 #include <vector>
-#include "node.h"
+#include <stdlib.h>
 #include "buildTree.h"
 
 using namespace std;
@@ -37,8 +37,6 @@ sort() – Sorts the list in increasing order
 
 
 
-
-
 int main ( int argc, char *argv[] )
 {
 
@@ -49,6 +47,7 @@ int main ( int argc, char *argv[] )
 
 	string file_string;
 	vector<string> input_numbers;
+	vector<int> intNumbers;
 
 
 	if(argc==1)
@@ -71,44 +70,31 @@ int main ( int argc, char *argv[] )
 	    	  char x; //It will take character by character and append to the string.
 	      	  while (the_file.get ( x ))
 	      	  {
-	      		file_string+=x;
+	      			  file_string+=x;
 	      	  }
 
 	    }
 	}
 
 
-
+	//Separates the string numbers over white-spaces. returns a string vector.
 	input_numbers=divide_string_over_spaces(file_string);
 
-	string last_digit=get_last_digit(4, input_numbers);
-	cout<<last_digit<<endl;
+	//converts the string vector into a integer vector. Returns a int vector.
+	intNumbers=convert_string_vector_to_int_vector(input_numbers);
 
 
+	    for(int i=0; i<input_numbers.size(); i++)
+	    {
+	    	int num=lastDigit(intNumbers[i]);
+	    	my_tree.insertNode(num, intNumbers[i]);
+	    }
 
 
-
-	/*
-	list<int>::iterator num_value;
-
-	Node *t=new Node();
-
-	t->values.push_front(4);vector<string> divide_string_over_spaces(string my_string)
-	t->values.push_front(4);
-	t->values.push_front(6);
-	t->values.push_front(7);
-
-	   for(num_value = t->values.begin(); num_value != t->values.end(); ++num_value)
-	        cout << '\t' << *num_value;
-	    cout << '\n';
-
-	*/
-
-
-
-
+	   my_tree.displayInOrder();
 
 
 }
+
 
 
