@@ -62,7 +62,7 @@ public:
 		traversePreorder(root);
 		cout<<"PostOrder: "<< "\n\n";
 		traversePostorder(root);
-		cout<<"Inorder: "<< "\n\n";
+		cout<<"PostOrder: "<< "\n\n";
 		traverseInorder(root);
 	}
 

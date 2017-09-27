@@ -24,6 +24,8 @@
 			traversePreorder(nodePtr->left);
 			traversePreorder(nodePtr->right);
 		}
+
+
 	}
 
 	//This will be a function used to display the binary tree in postorder.

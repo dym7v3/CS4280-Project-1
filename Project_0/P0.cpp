@@ -13,7 +13,8 @@
 #include <istream>
 #include <iterator>
 #include "buildTree.h"
-
+#include <stdio.h>
+#include <cstring>
 using namespace std;
 
 
@@ -23,12 +24,11 @@ int main ( int argc, char *argv[] )
 
 
 	BinaryTree my_tree;
-
 	string file_string;
 	vector<string> input_numbers;
 	vector<int> intNumbers;
-
-
+	FILE* fp;
+	char buffer [100];
 	if(argc==1)
 	{
 
@@ -37,27 +37,41 @@ int main ( int argc, char *argv[] )
 
 	else
 	{
+
+		file_string=argv[1];
+		fp=fopen(file_string.c_str(), "r");
+
 		//This will open the file and read in the file with ifstream.
-		ifstream the_file ( argv[1] );
+		ifstream the_file(argv[1]);
 
 		//Checks if the file was actually opened.
 		if ( !the_file.is_open() )
 			cout<<"Could not open file\n"; //Prints out an error message
 
-		//Other wise it will import the file as a string.
-	    else
-	    {
-	    	  char x; //It will take character by character and append to the string.
-	      	  while (the_file.get ( x ))
-	      	  {
-	      			  file_string+=x;
-	      	  }
 
-	    }
+		if ( the_file.peek() == std::ifstream::traits_type::eof() )
+		{
+		   cout<<"The File is empty. The Program will end.";
+		   exit(1);
+
+		}
+
+
+
+	   while ( ! feof (fp) )
+	   {
+		   if ( fgets (buffer , 100 , fp) == NULL ) break;
+	    		fputs (buffer , stdout);
+	   }
+
+
+		fclose (fp);
+
+
 	}
 
 
-
+	/*
 	//Separates the string numbers over white-spaces. returns a string vector.
 	input_numbers=divide_string_over_spaces(file_string);
 
@@ -73,7 +87,7 @@ int main ( int argc, char *argv[] )
 
 
 	   my_tree.displayInOrder();
-
+		*/
 	   return 0;
 }
 

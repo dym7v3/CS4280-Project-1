@@ -23,7 +23,7 @@ vector<int> convert_string_vector_to_int_vector(vector<string> input_numbers)
 		    int num = atoi(input_numbers.at(i).c_str());
 		    if(num==0)
 		    {
-		    	cout<<"Your file has characters in it. The program will end."<<endl;
+		    	cout<<"Your file has characters in it. The program only takes integers. It terminate now."<<endl;
 		    	exit(0);
 		    }
 
