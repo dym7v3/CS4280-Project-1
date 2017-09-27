@@ -29,14 +29,16 @@ private:
 		TreeNode *left; //Pointer to left child node
 		TreeNode *right; //Pointer to right child node
 		int digit;
+		int level;
 	};
 
 	TreeNode *root; //pointer to the root node
 
 		//private member functions
-		void insert(TreeNode *&, TreeNode *&, int);
-		void in_order(TreeNode *, int) const;
-
+		void insert(TreeNode *&, TreeNode *&, int,int);
+		void traversePreorder(TreeNode *) const;
+		void traversePostorder(TreeNode *) const;
+		void traverseInorder(TreeNode *) const;
 public:
 
 	//Constructor
@@ -56,8 +58,12 @@ public:
 	//function with the root.
 	void displayInOrder()const
 	{
-		int level=0;
-		in_order(root, level);
+		cout<<"Preorder: "<< "\n\n";
+		traversePreorder(root);
+		cout<<"PostOrder: "<< "\n\n";
+		traversePostorder(root);
+		cout<<"Inorder: "<< "\n\n";
+		traverseInorder(root);
 	}
 
 

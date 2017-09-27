@@ -50,21 +50,23 @@ vector<string> divide_string_over_spaces(string my_string)
 
 
 	//This function is from the book at allows you to insert strings into the tree.
-	void BinaryTree::insert(TreeNode *&nodePtr, TreeNode *&newNode, int value)
+	void BinaryTree::insert(TreeNode *&nodePtr, TreeNode *&newNode, int value, int level)
 	{
 
 		//Insert the node
 		if(nodePtr==0)
 		{
 			nodePtr=newNode;
-			nodePtr->digit_list.push_back(value);
+			nodePtr->digit_list.push_front(value);
+			nodePtr->level=level;
+
 		}
 		else if(newNode->digit==nodePtr->digit)
-			nodePtr->digit_list.push_back(value);
+			nodePtr->digit_list.push_front(value);
 		else if(newNode->digit<nodePtr->digit)
-			insert(nodePtr->left,newNode, value); //search the left branch
+			insert(nodePtr->left,newNode, value, level+1); //search the left branch
 		else
-			insert(nodePtr->right,newNode, value);//search the right branch
+			insert(nodePtr->right,newNode, value, level+1);//search the right branch
 	}
 
 
@@ -79,7 +81,7 @@ vector<string> divide_string_over_spaces(string my_string)
 		newNode->left=newNode->right=0;
 
 
-		insert(root, newNode, vector_value);
+		insert(root, newNode, vector_value, 0);
 	}
 
 
