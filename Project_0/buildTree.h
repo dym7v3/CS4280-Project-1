@@ -9,7 +9,7 @@
 #define BUILDTREE_H_
 
 #include <vector>
-#include <String>
+#include <string>
 #include <list>
 
 using namespace std;

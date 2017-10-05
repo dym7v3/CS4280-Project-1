@@ -16,7 +16,7 @@
 
 
 #include <iostream>
-#include <String>
+#include <string>
 #include <stdlib.h>
 #include <istream>
 #include <stdio.h>
@@ -39,7 +39,7 @@ int main ( int argc, char *argv[] )
 	string output_name; //this will be used to name the file.
 	vector<int> int_numbers; //will hold all the number in the file.
 	string my_string;
-
+	bool file_arg_given=false; //if file not given the output will be out. the order.
 	FILE* fp;
 
 	const int BUFFERSIZE = 100;
@@ -47,8 +47,30 @@ int main ( int argc, char *argv[] )
 
 	if(argc==1)
 	{
+		fp=stdin;
+		/*keeps reading in the file until the end of the file is reached. Enter is required to be pressed for
+		for it to take in all the input from the keyboard.
+		*/
 
-		//getline(cin, file_string);
+		fseek(fp, 0, SEEK_END);
+		unsigned long len = (unsigned long)ftell(fp);
+		if (len ==0)
+		{
+			cout<<"This is file is empty. The program will exit now. "<<endl;
+			exit(1);
+		}
+		rewind(fp);
+
+		while(! feof (fp))
+		{
+			//if it is equal to null then it will break the loop that is taking in the numbers from the file.
+			if ( fgets (buffer , BUFFERSIZE , fp) == NULL )
+			 break;
+
+			my_string+=buffer; //appends the buffer to a string which will be divided over whitespaces.
+		}
+
+		fclose (fp); //closes the stdin.
 	}
 
 	else if(argc>=3)
@@ -74,7 +96,7 @@ int main ( int argc, char *argv[] )
 		 else
 		  {
 			 //If it doesn't have the .txt extension then it will add the .fs17.txt
-			 file_name+=".fs17.txt";
+			 file_name+=".fs17";
 			 fp=fopen(file_name.c_str(), "r");
 		  }
 
@@ -111,13 +133,9 @@ int main ( int argc, char *argv[] )
 	   }
 
 	  		fclose (fp); //closes the file
-
+	  		file_arg_given=true;
 
 	}
-
-
-		//Needs two versions with output file being not written in and the other one with the file.
-
 
 		//Separates the string numbers over white-spaces. returns a string vector.
 		int_numbers=divide_string_over_spaces(my_string);
@@ -130,7 +148,18 @@ int main ( int argc, char *argv[] )
 		   	binary_search_tree.insert_node(last_num, int_numbers[i]);
 		}
 
-		binary_search_tree.display_results(output_name);
+		//This will check if the file name is given if true then it will name the file and then the order info.
+		//If not then it will make the output name out and append the order info.
+		if(file_arg_given)
+		{
+			binary_search_tree.display_results(output_name);
+		}
+		else
+		{
+			output_name="out";
+			binary_search_tree.display_results(output_name);
+		}
+
 
 
 

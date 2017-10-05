@@ -11,7 +11,7 @@
 
 
 #include <list>
-#include <String>
+#include <string>
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -56,16 +56,22 @@ public:
 	//function with the root.
 	void display_results(string name_of_file)const
 		{
-			ofstream preorder(name_of_file+".preorder.txt");
+
+
+			string preorder_name=name_of_file+".preorder.txt";
+			string postorder_name=name_of_file+".postorder.txt";
+			string inorder_name=name_of_file+".inorder.txt";
+
+			ofstream preorder(preorder_name.c_str());
 			cout<<"Preorder: "<< "\n\n";
 			traversePreorder(root,preorder);
 
 			cout<<"PostOrder: "<< "\n\n";
-			ofstream postorder(name_of_file+".postorder.txt");
+			ofstream postorder(postorder_name.c_str());
 			traversePostorder(root,postorder);
 
 			cout<<"Inorder: "<< "\n\n";
-			ofstream inorder(name_of_file+".inorder.txt");
+			ofstream inorder(inorder_name.c_str());
 			traverseInorder(root,inorder);
 		}
 

@@ -6,7 +6,6 @@
  */
 
 #include "buildTree.h"
-#include "traversals.h"
 #include "node.h"
 #include <fstream>
 #include <iostream>
@@ -25,10 +24,10 @@ using namespace std;
 			}
 			cout<<nodePtr->digit<<":";
 			output<<nodePtr->digit<<":";
-			for (auto v : nodePtr->digit_list)
+			for (list<int>::iterator it=nodePtr->digit_list.begin(); it != nodePtr->digit_list.end(); ++it)
 			{
-				cout << " "<<v;
-				output<<" "<<v;
+				 cout << ' ' << *it;
+				 output<< ' ' << *it;
 			}
 			cout<<"\n";
 			output<<"\n";
@@ -41,7 +40,7 @@ using namespace std;
 	}
 
 	//This will be a function used to display the binary tree in postorder.
-		void BinaryTree::traversePostorder(TreeNode *nodePtr,ostream& output) const
+		void BinaryTree::traversePostorder(TreeNode *nodePtr, ostream& output) const
 		{
 			if(nodePtr)
 			{
@@ -55,10 +54,10 @@ using namespace std;
 				}
 				cout<<nodePtr->digit<<":";
 				output<<nodePtr->digit<<":";
-				for (auto v : nodePtr->digit_list)
+				for (list<int>::iterator it=nodePtr->digit_list.begin(); it != nodePtr->digit_list.end(); ++it)
 				{
-				       cout << " "<<v;
-				       output<< " "<<v;
+				    cout << ' ' << *it;
+				    output<< ' ' << *it;
 				}
 				cout<<"\n";
 				output<<"\n";

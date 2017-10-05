@@ -4,7 +4,7 @@
 #include "node.h"
 #include <iostream>
 #include <vector>
-#include <String>
+#include <string>
 #include <sstream>
 #include <cstdlib>
 using namespace std;
