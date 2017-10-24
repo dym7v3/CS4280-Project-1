@@ -5,6 +5,9 @@
 #include "./filterFunction.h"
 #include "./FileInputFunction.h"
 #include "./token.h"
+#include "./scanner.h"
+#include "./testscanner.h"
+
 
 using namespace std;
 
@@ -35,10 +38,9 @@ int main ( int argc, char *argv[] )
     }
 
     string_from_file=Remove_Comments(string_from_file);
-    cout<<string_from_file;
 
-    TOKEN_ID hello=End_Of_File;
-    cout<<hello;
+    Test_Scanner(string_from_file);
+
 
 
     return 0;
