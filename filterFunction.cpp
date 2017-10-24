@@ -11,7 +11,7 @@ using namespace std;
  * This function will go through the whole string and remove the comments in the string.
  * and return a new string with the comments removed to the caller function.
  */
-const string remove_comments(const string to_remove_comments_string)
+const string Remove_Comments(const string to_remove_comments_string)
 {
 
     string string_without_comments;
@@ -71,7 +71,7 @@ const string remove_comments(const string to_remove_comments_string)
  * will be called after the program removes comments from the program.
  */
 
-const int count_lines(const string to_get_number_of_new_lines) {
+const int Count_Lines(const string to_get_number_of_new_lines) {
 
     int number_of_lines=1; //variable will be used to count the amount of lines.
     //Goes character by character through the whole string and counts the amount of times there is a new line.

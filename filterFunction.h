@@ -8,7 +8,7 @@
 #include <string>
 using namespace std;
 
-const string remove_comments(const string);
-const int count_lines (const string );
+const string Remove_Comments(const string);
+const int Count_Lines (const string );
 
 #endif //P1_FILTERFUNCTION_H
