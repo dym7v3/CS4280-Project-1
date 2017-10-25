@@ -7,7 +7,7 @@
 
 using namespace std;
 
-int Character_Counter=0;
+int Character_Counter=18;
 
 const void Test_Scanner(string File_String)
 {

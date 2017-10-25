@@ -1,4 +1,4 @@
-Begin Program MATH;
+Begin Program MATH0
 
 Var x = 3;
 Var y = 5;

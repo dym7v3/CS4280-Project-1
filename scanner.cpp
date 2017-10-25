@@ -11,41 +11,57 @@ using namespace std;
 
 enum STATE
 {
-    INITIAL, //S0 first state
-    FINAL_STATE,
-    ERROR,
-
-
-
+    INITIAL=0, //S0 first state
+    FINAL_STATE=2000,
+    END_OF_FILE_COLUMN=0,
+    DIGIT_COLUMN=1,
+    LETTER_COLUMN=2,
+    WHITESPACE_COLUMN=3,
+    EQAULS_COLUMN=4,
+    LESS_THAN_COLUMN=5,
+    GREATER_THAN_COLUMN=6,
+    NOT_COLUMN=7,
+    COLON_COLUMN=8,
+    PLUS_COLUMN=9,
+    MINUS_COLUMN=10,
+    MUlTIPLY_COLUMN=11,
+    DIVIDE_COLUMN=12,
+    AMPERSAND_COLUMN=13,
+    PERCENT_COLUMN=14,
+    PERIOD_COLUMN=15,
+    LEFTBRACKET_COLUMN=16,
+    RIGHTBRACKET_COLUMN=17,
+    LEFTBRACE_COLUMN=18,
+    RIGHTBRACE_COLUMN=19,
+    COMMA_COLUMN=20,
+    LEFT_PARENTHESIS_COLUMN=21,
+    RIGHT_PARENTHESIS_COLUMN=22,
+    SEMICOLON_COLUMN=23,
 
 };
 
-const int END_OF_FILE_COLUMN=0;
-const int DIGIT_COLUMN=1;
-const int LETTER_COLUMN=2;
-const int WHITESPACE_COLUMN=3;
-const int EQAULS_COLUMN=4;
-const int LESSTHAN_COLUMN=5;
-const int GREATERTHAN_COLUMN=6;
-const int NOT_COLUMN=7;
-const int COLON_COLUMN=8;
-const int PLUS_COLUMN=9;
-const int MINUS_COLUMN=10;
-const int MUlTIPLY_COLUMN=11;
-const int DIVIDE_COLUMN=12;
-const int AMPERSAND_COLUMN=13;
-const int PERCENT_COLUMN=14;
-const int PERIOD_COLUMN=15;
-const int LEFTBRACKET_COLUMN=16;
-const int RIGHTBRACKET_COLUMN=17;
-const int LEFTBRACE_COLUMN=18;
-const int RIGHTBRACE_COLUMN=19;
-const int COMMA_COLUMN=20;
-const int LEFTPARENTHESIS_COLUMN=21;
-const int RIGHTPARENTHESIS_COLUMN=22;
-const int SEMICOLON_COLUMN=23;
-
-
+map <char, STATE> Different_States= {
+        {'=' , EQAULS_COLUMN},
+        {'<' , LESS_THAN_COLUMN},
+        {'>' , GREATER_THAN_COLUMN},
+        {'!' , NOT_COLUMN},
+        {':' , COLON_COLUMN},
+        {'+' , PLUS_COLUMN},
+        {'-' , MINUS_COLUMN},
+        {'*' , MUlTIPLY_COLUMN},
+        {'/' , DIVIDE_COLUMN},
+        {'&' , AMPERSAND_COLUMN},
+        {'%' , PERCENT_COLUMN},
+        {'.' , PERIOD_COLUMN},
+        {'[' , LEFTBRACKET_COLUMN},
+        {']' , RIGHTBRACKET_COLUMN},
+        {'{' , LEFTBRACE_COLUMN},
+        {'}' , RIGHTBRACE_COLUMN},
+        {',' , COMMA_COLUMN},
+        {'(' , LEFT_PARENTHESIS_COLUMN},
+        {')' , RIGHT_PARENTHESIS_COLUMN},
+        {';' , SEMICOLON_COLUMN}
+};
 
 int table[27][24] = {
         { 2000 , 2 , 1 , 0 , 3 , 5 , 7 , 9 , 11 , 12 , 13 , 14 , 15 , 16 , 17 , 18 , 19 , 20 , 21 , 22 , 23 , 24 , 25 , 26 } ,
@@ -76,12 +92,26 @@ int table[27][24] = {
         { 2024 , 2024 , 2024 , 2024 , 2024 , 2024 , 2024 , 2024 , 2024 , 2024 , 2024 , 2024 , 2024 , 2024 , 2024 , 2024 , 2024 , 2024 , 2024 , 2024 , 2024 , 2024 , 2024 , 2024 } ,
         { 2025 , 2025 , 2025 , 2025 , 2025 , 2025 , 2025 , 2025 , 2025 , 2025 , 2025 , 2025 , 2025 , 2025 , 2025 , 2025 , 2025 , 2025 , 2025 , 2025 , 2025 , 2025 , 2025 , 2025 } ,
 
-
-
-
-
-
 };
+
+//Checks if the character is a letter a number or something else and returned the enum type.
+STATE check(char the_char)
+{
+    if(isalpha(the_char))
+    {
+        return LETTER_COLUMN;
+    }
+    else if(isdigit(the_char))
+    {
+        return DIGIT_COLUMN;
+    }
+    else if(isspace(the_char))
+    {
+        return WHITESPACE_COLUMN;
+    }
+    else return the_char == EOF ? END_OF_FILE_COLUMN : Different_States[the_char];
+}
+
 
 //Returns a character from the string at the number in the string.
 const char Get_Char(string &file_string, int char_number_in_string)
@@ -102,15 +132,15 @@ Token * Driver (char first_char)
     string value_string;
     Token *my_token= new Token(this_token, "hello", 5);
 
-    while(state!=FINAL_STATE)
-    {
+   // while(state!=FINAL_STATE)
+    cout<<check(first_char)<<endl;
 
 
 
 
 
 
-    }
+
 
 
 
