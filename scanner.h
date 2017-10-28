@@ -8,7 +8,7 @@
 #include <string>
 using namespace std;
 
-const char Get_Char(string &, int );
-Token * Driver(char);
+Token * Driver(const string &);
+extern int Character_Counter;
 
 #endif //P1_SCANNER_H
