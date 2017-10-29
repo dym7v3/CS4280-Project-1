@@ -1,11 +1,16 @@
-//
-// Created by Dennis Moyseyev on 10/17/2017.
-//
+/*
+ * Created by Dennis Moyseyev on 10/17/2017.
+ * This Program is the scanner part of the program what it does is take in a file
+ * Then it will take that file and remove all the comments from it.
+ * Then it wll have it broken up into tokens with the line numbers and the value of the actually token string.
+ * It will be used by the parser. There is a function which is called the test scanner which will call the driver
+ * with the string of the program and wait to get a toke back. It will continue to do this until it reaches the EOF character.
+*/
+
 #include <iostream>
 #include "./filterFunction.h"
 #include "./FileInputFunction.h"
 #include "./testscanner.h"
-
 
 using namespace std;
 
@@ -25,7 +30,7 @@ int main ( int argc, char *argv[] )
     else if(argc>=3)
     {
         //This throws an error because not many arguments are given.
-        cout << "To many arguments. It will exit now. ";
+        cout << "ARGUMENTS ERROR: To many arguments. It will exit now. ";
         exit(1);
     }
     else
@@ -41,7 +46,6 @@ int main ( int argc, char *argv[] )
 
     //Calls the parser(Test_scanner) function which will continue to call the driver until the end of file is reached.
     Test_Scanner(string_from_file);
-
 
     return 0;
 }

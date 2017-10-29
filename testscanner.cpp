@@ -11,7 +11,7 @@ const void Test_Scanner(const string &File_String)
 {
     bool not_reached_end_of_file= true;
 
-
+    //The test scanner program will continue to be called until it reaches the end of the file token.
     do
     {
         Token *the_token= nullptr;
@@ -24,4 +24,5 @@ const void Test_Scanner(const string &File_String)
         }
 
     }while(not_reached_end_of_file);
+    cout<<"\n\nThank you for using my scanner built by Denis Moyseyev. "<<endl;
 }

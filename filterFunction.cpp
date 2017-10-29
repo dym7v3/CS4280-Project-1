@@ -38,7 +38,7 @@ const string Remove_Comments(const string to_remove_comments_string)
                 continue;
             else{
 
-                cout<<"ERROR: A not allowed character was found on line : "<<number_of_lines<<endl;
+                cout<<"SCANNER ERROR: A not allowed character was found on line : "<<number_of_lines<<endl;
                 cout<<"The program will Terminate."<<endl;
                 exit(1);
             }
@@ -55,12 +55,13 @@ const string Remove_Comments(const string to_remove_comments_string)
             }
             if(c=='\n') //counts the amount of lines in the program string.
             {
+                string_without_comments+=c;
                 number_of_lines++;
             }
             //Checks if it reached the end of the string and a comment was opened but never closed it will throw an error.
             if(size_of_string==currently_in_string)
             {
-                cout<<"ERROR: The file has an open comment statement but not closed comment statement at line : "<<where_comment_was_started<<endl;
+                cout<<"SCANNER ERROR: The file has an open comment statement but not closed comment statement at line : "<<where_comment_was_started<<endl;
                 cout<<"The scanner will terminate. "<<endl;
                 exit(1);
             }
@@ -88,25 +89,4 @@ const string Remove_Comments(const string to_remove_comments_string)
     }
     //returns the new with the comments removed.
     return  string_without_comments;
-}
-
-/*
- * Count function that will count the number of lines in the program string. This function
- * will be called after the program removes comments from the program.
- */
-
-const int Count_Lines(const string to_get_number_of_new_lines) {
-
-    int number_of_lines=1; //variable will be used to count the amount of lines.
-    //Goes character by character through the whole string and counts the amount of times there is a new line.
-    for(const char & c : to_get_number_of_new_lines)
-    {
-        if(c=='\n')
-        {
-            number_of_lines++;
-        }
-    }
-
-    //returns the amount.
-    return number_of_lines;
 }

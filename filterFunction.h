@@ -6,9 +6,8 @@
 #define P1_FILTERFUNCTION_H
 
 #include <string>
-using namespace std;
 
+using namespace std;
 const string Remove_Comments(const string);
-const int Count_Lines (const string );
 
 #endif //P1_FILTERFUNCTION_H

@@ -10,5 +10,6 @@ using namespace std;
 
 Token * Driver(const string &);
 extern int Character_Counter;
+extern int Number_Line_Counter;
 
 #endif //P1_SCANNER_H

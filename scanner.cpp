@@ -8,7 +8,11 @@
 
 using namespace std;
 const int STRING_ARRAY_SIZE=10;
+const int TABLE_ROWS=27;
+const int TABLE_COLUMNS=24;
+const int TOKENS_TO_STRING_ARRAY_SIZE=36;
 int Character_Counter=0;
+int Number_Line_Counter=1;
 const char Get_Char(const string &, int );
 
 
@@ -109,7 +113,7 @@ map <string, TOKEN_ID > Identifiers_To_Token_Ids= {
 };
 
 
-const string TOKEN_IDS_TO_STRING_ARRAY []= {
+string TOKEN_IDS_TO_STRING_ARRAY [TOKENS_TO_STRING_ARRAY_SIZE]= {
         "End_Of_File",
         "Keyword_Begin",
         "Keyword_End",
@@ -122,7 +126,7 @@ const string TOKEN_IDS_TO_STRING_ARRAY []= {
         "Keyword_Output",
         "Keyword_Program",
         "Integer",
-        "Identifiers",
+        "Identifier",
         "Operator_Equal",
         "Operator_Less_Than",
         "Operator_Less_Than_Or_Equal_To",
@@ -147,7 +151,7 @@ const string TOKEN_IDS_TO_STRING_ARRAY []= {
         "Delimiter_Comma",
         "Delimiter_Semi_Colon"};
 
-static int table[27][24] = {
+static int table[TABLE_ROWS][TABLE_COLUMNS] = {
         { 2000 , 2 , 1 , 0 , 3 , 5 , 7 , 9 , 11 , 12 , 13 , 14 , 15 , 16 , 17 , 18 , 19 , 20 , 21 , 22 , 23 , 24 , 25 , 26 } ,
         { 2001 , 1 , 1 , 2001 , 2001 , 2001 , 2001 , 2001 , 2001 , 2001 , 2001 , 2001 , 2001 , 2001 , 2001 , 2001 , 2001 , 2001 , 2001 , 2001 , 2001 , 2001 , 2001 , 2001 } ,
         { 2002 , 2 , 2002 , 2002 , 2002 , 2002 , 2002 , 2002 , 2002 , 2002 , 2002 , 2002 , 2002 , 2002 , 2002 , 2002 , 2002 , 2002 , 2002 , 2002 , 2002 , 2002 , 2002 , 2002 } ,
@@ -199,10 +203,10 @@ const char Get_Char(const string &file_string, int char_number_in_string)
 {
     if(file_string.length()<char_number_in_string || char_number_in_string<0)
     {
-        cout<<"ERROR: Can't return a character that is outside the string. Program will terminate."<<endl;
+        cout<<"SCANNER ERROR: Can't return a character that is outside the string. Program will terminate."<<endl;
         exit(1);
     }
-
+    Character_Counter++;
     return file_string[char_number_in_string];
 }
 
@@ -227,27 +231,28 @@ Token * Driver (const string &the_file_string)
     TOKEN_ID token_id;
     string value_string;
     Token *my_token;
-    char  character_in_token;
+
     STATE next_state;
 
     while(state!=FINAL_STATE)
    {
+       char  character_in_token=Get_Char(the_file_string,Character_Counter);
 
-       character_in_token=Get_Char(the_file_string,Character_Counter);
-       Character_Counter++;
        next_state= static_cast<STATE>(table[state][check(character_in_token)]);
 
        //Error state.
        if(next_state<0)
        {
-           cout<<"ERROR: Encountered an ERROR state in the driver. The Program will exit now! "<<endl;
+           cout<<"SCANNER ERROR: Encountered an ERROR state in the driver. The Program will exit now! "<<endl;
            exit(1);
        }
        //A Final State.
        if(next_state>=2000)
        {
+           //this Goes and finds the token ID and then it returns it from a map.
            token_id=Final_States_To_Token_Ids[next_state];
 
+           Character_Counter--; //This will go back one character because the previous step grabbed a variable that need to be put back.
            //Checks if the token id is an identifier then it will go and check if it is a keyword.
            if(token_id==Identifiers)
            {
@@ -255,17 +260,22 @@ Token * Driver (const string &the_file_string)
            }
 
            //Makes the token and then prints results and returns the toke to the test scanner which will be the parser.
-           my_token=new Token(token_id,value_string,5);
-           cout <<"Token : "<<TOKEN_IDS_TO_STRING_ARRAY[(*my_token).Get_Token_ID()]<< " ~~~ String value : \""<<(*my_token).Get_The_String()<<"\""<<endl;
-           return my_token; //<<(*the_token).Get_Line_Number()
+           my_token=new Token(token_id,value_string, Number_Line_Counter);
+           cout <<"Token : "<<TOKEN_IDS_TO_STRING_ARRAY[(*my_token).Get_Token_ID()]<< " ~~~ String value : \""
+                <<(*my_token).Get_The_String()<<"\" ~~~ The Line Number is : "<<(*my_token).Get_Line_Number()<<endl;
+           return my_token;
        }
        else
        {
            if(WHITESPACE_COLUMN!=check(character_in_token))
                value_string+=character_in_token;
-           state=next_state;
+
+           //Keeps track of the line numbers in the file. So that we can later display the token value and the line number.
+           if(character_in_token=='\n')
+           {
+               Number_Line_Counter++;
+           }
+           state=next_state; //switches to a new state.
        }
-
-
    }
 }

@@ -27,7 +27,7 @@ const string File_Input(const string &file_name_without_ext) {
         //Only ends up here if the file was not able to be open.
     else
     {
-        cout<<"No File was found with the input name.\nThe program will be terminated.\n";
+        cout<<"ARGUMENT ERROR:  No File was found with the input name.\nThe program will be terminated.\n";
         exit(1);
     }
 }
@@ -44,7 +44,7 @@ const string Input_From_Stdin()
     auto len = (unsigned long)ftell(fp);
     if (len ==0)
     {
-        cout<<"This is file is empty. The program will exit now. "<<endl;
+        cout<<"ARGUMENT ERROR: This is file is empty. The program will exit now. "<<endl;
         exit(1);
     }
     rewind(fp);
