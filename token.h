@@ -54,11 +54,13 @@ class Token
 {
 //Private methods. This will be the line number, token id and the actual value of the string.
 private:
+
+
     TOKEN_ID  token_id;
     int line_number;
     string the_string;
 public:
-
+    Token();
     //Constructor for the class.
     Token(TOKEN_ID , string, int);
 

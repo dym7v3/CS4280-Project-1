@@ -14,11 +14,11 @@ const void Test_Scanner(const string &File_String)
     //The test scanner program will continue to be called until it reaches the end of the file token.
     do
     {
-        Token *the_token= nullptr;
-        the_token = Driver(File_String);
+
+        Token the_token = Driver(File_String);
 
         //This checks if the last token that was returned was the end of the file.
-        if((*the_token).Get_Token_ID()== End_Of_File)
+        if(the_token.Get_Token_ID()== End_Of_File)
         {
             not_reached_end_of_file=false;
         }

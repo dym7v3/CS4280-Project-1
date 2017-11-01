@@ -225,13 +225,11 @@ TOKEN_ID Token_Id_A_Keyword(const string & the_value_string)
 }
 
 //This gets called by the test scanner program.
-Token * Driver (const string &the_file_string)
+Token  Driver (const string &the_file_string)
 {
     STATE state=INITIAL;
     TOKEN_ID token_id;
     string value_string;
-    Token *my_token;
-
     STATE next_state;
 
     while(state!=FINAL_STATE)
@@ -260,10 +258,10 @@ Token * Driver (const string &the_file_string)
            }
 
            //Makes the token and then prints results and returns the toke to the test scanner which will be the parser.
-           my_token=new Token(token_id,value_string, Number_Line_Counter);
+           Token *my_token=new Token(token_id,value_string, Number_Line_Counter);
            cout <<"Token : "<<TOKEN_IDS_TO_STRING_ARRAY[(*my_token).Get_Token_ID()]<< " ~~~ String value : \""
                 <<(*my_token).Get_The_String()<<"\" ~~~ The Line Number is : "<<(*my_token).Get_Line_Number()<<endl;
-           return my_token;
+           return *my_token;
        }
        else
        {

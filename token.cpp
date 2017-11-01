@@ -2,6 +2,13 @@
 
 using namespace std;
 
+
+
+//This is the constructor. It will take in the a TOKEn_ID, a string value and line number.
+Token::Token()
+{
+
+}
 //This is the constructor. It will take in the a TOKEn_ID, a string value and line number.
 Token::Token(TOKEN_ID id, string the_string , int line_num)
 {

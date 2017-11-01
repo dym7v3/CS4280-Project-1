@@ -8,7 +8,7 @@
 #include <string>
 using namespace std;
 
-Token * Driver(const string &);
+Token Driver(const string &);
 extern int Character_Counter;
 extern int Number_Line_Counter;
 
